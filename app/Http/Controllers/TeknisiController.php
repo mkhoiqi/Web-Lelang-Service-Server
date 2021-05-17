@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\teknisi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeknisiController extends Controller
@@ -44,7 +44,7 @@ class TeknisiController extends Controller
      * @param  \App\Models\teknisi  $teknisi
      * @return \Illuminate\Http\Response
      */
-    public function show(teknisi $teknisi)
+    public function show()
     {
         //
     }
@@ -55,7 +55,7 @@ class TeknisiController extends Controller
      * @param  \App\Models\teknisi  $teknisi
      * @return \Illuminate\Http\Response
      */
-    public function edit(teknisi $teknisi)
+    public function edit()
     {
         //
     }
@@ -67,7 +67,7 @@ class TeknisiController extends Controller
      * @param  \App\Models\teknisi  $teknisi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, teknisi $teknisi)
+    public function update(Request $request,)
     {
         //
     }
@@ -78,7 +78,7 @@ class TeknisiController extends Controller
      * @param  \App\Models\teknisi  $teknisi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(teknisi $teknisi)
+    public function destroy()
     {
         //
     }

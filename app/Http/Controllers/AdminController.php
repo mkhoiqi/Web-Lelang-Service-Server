@@ -44,7 +44,7 @@ class AdminController extends Controller
      * @param  \App\Models\admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(admin $admin)
+    public function show()
     {
         //
     }
@@ -55,7 +55,7 @@ class AdminController extends Controller
      * @param  \App\Models\admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(admin $admin)
+    public function edit()
     {
         //
     }
@@ -67,7 +67,7 @@ class AdminController extends Controller
      * @param  \App\Models\admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, admin $admin)
+    public function update(Request $request,)
     {
         //
     }
@@ -78,7 +78,7 @@ class AdminController extends Controller
      * @param  \App\Models\admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(admin $admin)
+    public function destroy()
     {
         //
     }
