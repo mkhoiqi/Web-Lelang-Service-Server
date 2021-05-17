@@ -3,10 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function showalluser()
+    {
+        $data = User::orderBy('role', 'DESC')->get();
+        return response($data, 201);
+    }
+    public function createProject(Request $request)
+    {
+        $project = new project;
+        $project->judul = $request->input('judul');
+        $project->user_id = $request->input('user_id');
+        $project->harga_awal = $request->input('harga_awal');
+        $project->deskripsi = $request->input('deskripsi');
+        $project->lokasi = $request->input('lokasi');
+        $project->jenis = $request->input('jenis');
+        $project->harga_fix = $request->input('harga_fix');
+        $project->status = $request->input('status');
+        $project->tanggal_akhir_bid = $request->input('tanggal_akhir_bid');
+        $project->save();
+        return response($project, 201);
+    }
+    public function updateProject(Request $request)
+    {
+        $project_id = $request->id;
+        project::where('id', $project_id)->update([
+            'judul' => $request->input('judul'),
+            'user_id' => $request->input('user_id'),
+            'harga_awal' => $request->input('harga_awal'),
+            'deskripsi' => $request->input('deskripsi'),
+            'lokasi' => $request->input('lokasi'),
+            'jenis' => $request->input('jenis'),
+            'harga_fix' => $request->input('harga_fix'),
+            "status" => $request->input('status'),
+            'tanggal_akhir_bid' => $request->input('tanggal_akhir_bid'),
+        ]);
+        return response(200);
+    }
+    public function deleteProject(Request $request)
+    {
+        $project = project::find($request->id);
+        $project->forceDelete();
+        return response('project Deleted', 200);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -67,10 +110,7 @@ class AdminController extends Controller
      * @param  \App\Models\admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

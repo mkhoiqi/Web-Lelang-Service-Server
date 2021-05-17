@@ -28,7 +28,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/edituser', [UserController::class, 'update']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
-
     Route::post('/register', [UserController::class, 'register']);
 });
 Route::post('/login', [UserController::class, 'login']);
