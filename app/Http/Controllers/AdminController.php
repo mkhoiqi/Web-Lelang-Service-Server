@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Bid;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -49,6 +50,16 @@ class AdminController extends Controller
         $project = project::find($request->id);
         $project->forceDelete();
         return response('project Deleted', 200);
+    }
+    public function showBidproject(Request $request)
+    {
+        $bid = bid::where('project_id', $request->project_id)->get();
+        return response($bid, 201);
+    }
+    public function showallBid(Request $request)
+    {
+        $bid = bid::all();
+        return response($bid, 201);
     }
     /**
      * Display a listing of the resource.

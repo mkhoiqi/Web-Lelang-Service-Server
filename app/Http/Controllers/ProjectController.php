@@ -3,10 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Project;
+use App\Models\Bid;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
-class TeknisiController extends Controller
+class ProjectController extends Controller
 {
+
+    public function showactiveproject()
+    {
+        $date = Carbon::now();
+        $data = project::where('status', 'active')->where($date, '>=', 'tanggal_akhir_bid')->get();
+        return response($data, 201);
+    }
+    public function showonprogressproject()
+    {
+        $data = project::where('status', 'on progress')->get();
+        return response($data, 201);
+    }
+    public function showdoneproject()
+    {
+        $data = project::where('status', 'done')->get();
+        return response($data, 201);
+    }
+    public function createBid(Request $request)
+    {
+        $bid = new bid;
+        $bid->user_id = $request->input('user_id');
+        $bid->project_id = $request->input('project_id');
+        $bid->harga_tawar = $request->input('harga_tawar');
+        $bid->save();
+        return response($bid, 201);
+    }
+
+    public function updateBid(Request $request)
+    {
+        $bid_id = $request->id;
+        bid::where('id', $bid_id)->update([
+            'user_id' => $request->input('user_id'),
+            'project_id' => $request->input('project_id'),
+            'harga_tawar' => $request->input('harga_tawar'),
+        ]);
+        return response(200);
+    }
+    public function deleteBid(Request $request)
+    {
+        $bid = bid::find($request->id);
+        $bid->forceDelete();
+        return response('bid Deleted', 200);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +101,7 @@ class TeknisiController extends Controller
      * @param  \App\Models\teknisi  $teknisi
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function bid()
     {
         //
     }
