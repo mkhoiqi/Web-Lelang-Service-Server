@@ -14,17 +14,17 @@ class ProjectController extends Controller
     public function showactiveproject()
     {
         $date = Carbon::now();
-        $data = project::where('status', 'active')->where($date, '>=', 'tanggal_akhir_bid')->get();
+        $data = project::where('status', 'active')->where($date, '>=', 'tanggal_akhir_bid')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function showonprogressproject()
     {
-        $data = project::where('status', 'on progress')->get();
+        $data = project::where('status', 'on progress')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function showdoneproject()
     {
-        $data = project::where('status', 'done')->get();
+        $data = project::where('status', 'done')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function createBid(Request $request)

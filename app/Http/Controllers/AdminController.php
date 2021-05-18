@@ -53,12 +53,12 @@ class AdminController extends Controller
     }
     public function showBidproject(Request $request)
     {
-        $bid = bid::where('project_id', $request->project_id)->get();
+        $bid = bid::where('project_id', $request->project_id)->orderBy('created_at', 'DESC')->get();
         return response($bid, 201);
     }
     public function showallBid(Request $request)
     {
-        $bid = bid::all();
+        $bid = bid::orderBy('created_at', 'DESC')->get();
         return response($bid, 201);
     }
     /**
