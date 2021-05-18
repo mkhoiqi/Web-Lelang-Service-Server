@@ -31,7 +31,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/doneproject', [ProjectController::class, 'showdoneproject']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
-    Route::post('/register', [UserController::class, 'register']);
     Route::post('/showalluser', [AdminController::class, 'showalluser']);
     Route::post('/createProject', [AdminController::class, 'createProject']);
     Route::post('/updateProject', [AdminController::class, 'updateProject']);
@@ -44,4 +43,5 @@ Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
     Route::post('/deleteBid', [ProjectController::class, 'deleteBid']);
     Route::post('/updateBid', [ProjectController::class, 'updateBid']);
 });
+Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
