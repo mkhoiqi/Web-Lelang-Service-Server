@@ -39,17 +39,17 @@ class UserController extends Controller
             //     'username' => ['The provided credentials are incorrect.'],
             // ]);
         }
-        if ($user->type == "admin") {
+        if ($user->role == "admin") {
             $token = $user->createToken('user', ["admin"])->plainTextToken;
-            $type = $user->type;
+            $role = $user->role;
         } else {
             $token = $user->createToken('user', ["teknisi"])->plainTextToken;
-            $type = $user->type;
+            $role = $user->role;
         }
         $response = [
             'user' => $user,
             'token' => $token,
-            'type' => $type
+            'role' => $role
         ];
 
         return response($response, 201);
