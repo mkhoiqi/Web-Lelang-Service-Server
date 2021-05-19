@@ -38,11 +38,11 @@ Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/deleteProject', [AdminController::class, 'deleteProject']);
     Route::post('/showbidproject', [AdminController::class, 'showBidproject']);
     Route::post('/showallbid', [AdminController::class, 'showallBid']);
+    Route::post('/register', [UserController::class, 'register']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
     Route::post('/createBid', [ProjectController::class, 'createBid']);
     Route::post('/deleteBid', [ProjectController::class, 'deleteBid']);
     Route::post('/updateBid', [ProjectController::class, 'updateBid']);
 });
-Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
