@@ -16,7 +16,7 @@ class AdminController extends Controller
     }
     public function createProject(Request $request)
     {
-        $project = new project;
+        $project = new Project;
         $project->judul = $request->input('judul');
         $project->harga_awal = $request->input('harga_awal');
         $project->deskripsi = $request->input('deskripsi');
