@@ -82,4 +82,10 @@ class UserController extends Controller
         ]);
         return response(201);
     }
+    public function getusername(Request $request)
+    {
+        $id = $request->user_id;
+        $response = User::findOrFail($id);
+        return response($response, 201);
+    }
 }

@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/activeproject', [ProjectController::class, 'showactiveproject']);
     Route::get('/onprogressproject', [ProjectController::class, 'showonprogressproject']);
     Route::get('/doneproject', [ProjectController::class, 'showdoneproject']);
+    Route::get('/getusername', [ProjectController::class, 'getusername']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showalluser', [AdminController::class, 'showalluser']);
