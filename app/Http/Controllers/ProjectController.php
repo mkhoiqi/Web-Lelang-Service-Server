@@ -13,8 +13,8 @@ class ProjectController extends Controller
 
     public function showactiveproject()
     {
-        $date = Carbon::now();
-        $data = project::where('status', 'active')->where($date, '>=', 'tanggal_akhir_bid')->orderBy('created_at', 'DESC')->get();
+        $date = Carbon::now()->format('Y-m-d');;
+        $data = project::where('status', 'active')->where('tanggal_akhir_bid', '>=', $date)->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function showonprogressproject()
