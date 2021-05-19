@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('deskripsi');
             $table->string('lokasi');
             $table->string('jenis');
-            $table->string('harga_fix');
+            $table->string('harga_fix')->nullable();
             $table->string('status');
             $table->date('tanggal_akhir_bid');
             $table->timestamps();
