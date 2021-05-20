@@ -84,8 +84,8 @@ class UserController extends Controller
     }
     public function getusername(Request $request)
     {
-        $id = $request->user_id;
-        $response = User::findOrFail($id);
+        $username = $request->username;
+        $response = User::findOrFail($username);
         return response($response, 201);
     }
     public function deleteUser(Request $request){
