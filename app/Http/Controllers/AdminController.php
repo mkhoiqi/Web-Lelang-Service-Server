@@ -14,6 +14,11 @@ class AdminController extends Controller
         $data = User::orderBy('role', 'DESC')->get();
         return response($data, 201);
     }
+    public function showteknisi()
+    {
+        $data = User::where('role', 'teknisi')->get();
+        return response($data, 201);
+    }
     public function createProject(Request $request)
     {
         $project = new project;
