@@ -29,7 +29,7 @@ class ProjectController extends Controller
     }
     public function createBid(Request $request)
     {
-        $bid = new bid;
+        $bid = new Bid;
         $bid->user_id = $request->input('user_id');
         $bid->project_id = $request->input('project_id');
         $bid->harga_tawar = $request->input('harga_tawar');
