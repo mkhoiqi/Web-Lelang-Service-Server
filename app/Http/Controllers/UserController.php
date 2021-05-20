@@ -71,7 +71,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $id = Auth()->user()->id;
+        $id = $request->id;
         User::where('id', $id)->update([
             'name' => $request->input("name"),
             "username" => $request->input("username"),
