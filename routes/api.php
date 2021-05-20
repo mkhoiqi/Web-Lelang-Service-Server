@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showalluser', [AdminController::class, 'showalluser']);
     Route::post('/createProject', [AdminController::class, 'createProject']);
+    Route::post('/getProject', [AdminController::class, 'getproject']);
     Route::post('/updateProject', [AdminController::class, 'updateProject']);
     Route::post('/deleteProject', [AdminController::class, 'deleteProject']);
     Route::post('/showbidproject', [AdminController::class, 'showBidproject']);

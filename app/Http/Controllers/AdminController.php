@@ -51,6 +51,12 @@ class AdminController extends Controller
         $project->forceDelete();
         return response('project Deleted', 200);
     }
+    public function getproject(Request $request)
+    {
+        $id = $request->id;
+        $response = project::findOrFail($id);
+        return response($response, 201);
+    }
     public function showBidproject(Request $request)
     {
         $bid = bid::where('project_id', $request->project_id)->orderBy('created_at', 'DESC')->get();
