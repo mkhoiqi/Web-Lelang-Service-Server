@@ -30,13 +30,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/onprogressproject', [ProjectController::class, 'showonprogressproject']);
     Route::get('/doneproject', [ProjectController::class, 'showdoneproject']);
     Route::post('/getusername', [UserController::class, 'getusername']);
+    Route::post('/delbidproject', [AdminController::class, 'delBidproject']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showalluser', [AdminController::class, 'showalluser']);
     Route::post('/createProject', [AdminController::class, 'createProject']);
     Route::post('/getProject', [AdminController::class, 'getproject']);
     Route::post('/updateProject', [AdminController::class, 'updateProject']);
+    Route::post('/updateProjectbid', [AdminController::class, 'updateProjectbid']);
     Route::post('/deleteProject', [AdminController::class, 'deleteProject']);
+    Route::post('/delallbidproject', [AdminController::class, 'delallBidproject']);
     Route::post('/showbidproject', [AdminController::class, 'showBidproject']);
     Route::post('/showallbid', [AdminController::class, 'showallBid']);
     Route::post('/register', [UserController::class, 'register']);
