@@ -19,12 +19,12 @@ class ProjectController extends Controller
     }
     public function showonprogressproject()
     {
-        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'on progress')->join('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
+        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'on progress')->leftJoin('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function showdoneproject()
     {
-        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'done')->join('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
+        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'done')->leftJoin('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function createBid(Request $request)
