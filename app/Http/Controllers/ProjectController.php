@@ -53,6 +53,17 @@ class ProjectController extends Controller
         $bid->forceDelete();
         return response('bid Deleted', 200);
     }
+
+    public function myBid(Request $request){
+        $userid = $request->user_id;
+        $mybid = bid::where('user_id', $userid)->get();
+        if($mybid){
+            return response($mybid, 200);
+        }
+        else{
+            return response("No bid", 200);
+        }
+    }
     /**
      * Display a listing of the resource.
      *

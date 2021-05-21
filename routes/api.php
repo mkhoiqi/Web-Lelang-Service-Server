@@ -46,5 +46,6 @@ Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
     Route::post('/createBid', [ProjectController::class, 'createBid']);
     Route::post('/deleteBid', [ProjectController::class, 'deleteBid']);
     Route::post('/updateBid', [ProjectController::class, 'updateBid']);
+    Route::post('/myBid', [ProjectController::class, 'myBid']);
 });
 Route::post('/login', [UserController::class, 'login']);
