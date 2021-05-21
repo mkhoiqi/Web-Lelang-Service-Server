@@ -71,7 +71,7 @@ class AdminController extends Controller
     }
     public function showBidproject(Request $request)
     {
-        $bid = bid::select('bids.*', 'users.id as userid')->where('project_id', $request->project_id)->join('users', 'users.id', '=', 'bids.user_id')->orderBy('bids.created_at', 'DESC')->get();
+        $bid = bid::select('bids.*', 'name', 'users.id as userid')->where('project_id', $request->project_id)->join('users', 'users.id', '=', 'bids.user_id')->orderBy('bids.created_at', 'DESC')->get();
         return response($bid, 201);
     }
     public function showallBid(Request $request)
