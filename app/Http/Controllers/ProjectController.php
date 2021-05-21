@@ -49,8 +49,7 @@ class ProjectController extends Controller
     }
     public function deleteBid(Request $request)
     {
-        $bid = bid::where('project_id', $request->project_id)->where('user_id', $request->user_id)->get();
-        $bid->forceDelete();
+        bid::where('project_id', $request->project_id)->where('user_id', $request->user_id)->forceDelete();
         return response('bid Deleted', 200);
     }
 
