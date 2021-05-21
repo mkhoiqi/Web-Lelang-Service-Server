@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/onprogressproject', [ProjectController::class, 'showonprogressproject']);
     Route::get('/doneproject', [ProjectController::class, 'showdoneproject']);
     Route::post('/getusername', [UserController::class, 'getusername']);
+    Route::post('/delbidproject', [AdminController::class, 'delBidproject']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showalluser', [AdminController::class, 'showalluser']);
@@ -43,13 +44,11 @@ Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showallbid', [AdminController::class, 'showallBid']);
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/deleteuser', [UserController::class, 'deleteuser']);
-    Route::post('/delbidproject', [AdminController::class, 'delBidproject']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
     Route::post('/createBid', [ProjectController::class, 'createBid']);
     Route::post('/deleteBid', [ProjectController::class, 'deleteBid']);
     Route::post('/updateBid', [ProjectController::class, 'updateBid']);
     Route::post('/myBid', [ProjectController::class, 'myBid']);
-    Route::post('/delbidproject', [AdminController::class, 'delBidproject']);
 });
 Route::post('/login', [UserController::class, 'login']);
