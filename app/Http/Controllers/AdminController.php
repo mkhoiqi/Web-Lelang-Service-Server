@@ -39,14 +39,21 @@ class AdminController extends Controller
         $project_id = $request->id;
         project::where('id', $project_id)->update([
             'judul' => $request->input('judul'),
-            'user_id' => $request->input('user_id'),
             'harga_awal' => $request->input('harga_awal'),
             'deskripsi' => $request->input('deskripsi'),
             'lokasi' => $request->input('lokasi'),
             'jenis' => $request->input('jenis'),
-            'harga_fix' => $request->input('harga_fix'),
             "status" => $request->input('status'),
             'tanggal_akhir_bid' => $request->input('tanggal_akhir_bid'),
+        ]);
+        return response(200);
+    }
+    public function updateProjectbid(Request $request)
+    {
+        $project_id = $request->id;
+        project::where('id', $project_id)->update([
+            'user_id' => $request->input('user_id'),
+            'harga_fix' => $request->input('harga_fix'),
         ]);
         return response(200);
     }
@@ -71,6 +78,18 @@ class AdminController extends Controller
     {
         $bid = bid::orderBy('created_at', 'DESC')->get();
         return response($bid, 201);
+    }
+    public function delallBidproject(Request $request)
+    {
+        $bid = bid::where('project_id', $request->project_id);
+        $bid->forceDelete();
+        return response('all bid in this project Deleted', 200);
+    }
+    public function delBidproject(Request $request)
+    {
+        $bid = bid::find($request->id);
+        $bid->forceDelete();
+        return response('all bid in this project Deleted', 200);
     }
     /**
      * Display a listing of the resource.
