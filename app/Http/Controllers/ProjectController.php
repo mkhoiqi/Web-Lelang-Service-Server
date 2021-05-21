@@ -19,12 +19,12 @@ class ProjectController extends Controller
     }
     public function showonprogressproject()
     {
-        $data = project::where('status', 'on progress')->orderBy('created_at', 'DESC')->get();
+        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'on progress')->join('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function showdoneproject()
     {
-        $data = project::where('status', 'done')->orderBy('created_at', 'DESC')->get();
+        $data = project::select('projects.*', 'name', 'users.id as userid')->where('status', 'done')->join('users', 'users.id', '=', 'projects.user_id')->orderBy('created_at', 'DESC')->get();
         return response($data, 201);
     }
     public function createBid(Request $request)
@@ -53,7 +53,8 @@ class ProjectController extends Controller
         return response('bid Deleted', 200);
     }
 
-    public function myBid(Request $request){
+    public function myBid(Request $request)
+    {
         $userid = $request->user_id;
         $mybid = bid::where('user_id', $userid)->get();
         return response($mybid, 200);
