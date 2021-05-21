@@ -57,12 +57,7 @@ class ProjectController extends Controller
     public function myBid(Request $request){
         $userid = $request->user_id;
         $mybid = bid::where('user_id', $userid)->get();
-        if($mybid){
-            return response($mybid, 200);
-        }
-        else{
-            return response("No bid", 200);
-        }
+        return response($mybid, 200);
     }
     /**
      * Display a listing of the resource.
