@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return Auth()->user();
 });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/edituser', [UserController::class, 'update']);
+    Route::get('/activeproject', [ProjectController::class, 'showactiveproject']);
+    Route::get('/onprogressproject', [ProjectController::class, 'showonprogressproject']);
+    Route::get('/doneproject', [ProjectController::class, 'showdoneproject']);
+    Route::post('/getusername', [UserController::class, 'getusername']);
+    Route::post('/delbidproject', [AdminController::class, 'delBidproject']);
+});
+Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
+    Route::post('/showalluser', [AdminController::class, 'showalluser']);
+    Route::post('/createProject', [AdminController::class, 'createProject']);
+    Route::post('/getProject', [AdminController::class, 'getproject']);
+    Route::post('/updateProject', [AdminController::class, 'updateProject']);
+    Route::post('/updateProjectbid', [AdminController::class, 'updateProjectbid']);
+    Route::post('/deleteProject', [AdminController::class, 'deleteProject']);
+    Route::post('/delallbidproject', [AdminController::class, 'delallBidproject']);
+    Route::post('/showbidproject', [AdminController::class, 'showBidproject']);
+    Route::post('/showallbid', [AdminController::class, 'showallBid']);
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/deleteuser', [UserController::class, 'deleteuser']);
+});
+Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
+    Route::post('/createBid', [ProjectController::class, 'createBid']);
+    Route::post('/deleteBid', [ProjectController::class, 'deleteBid']);
+    Route::post('/updateBid', [ProjectController::class, 'updateBid']);
+    Route::post('/myBid', [ProjectController::class, 'myBid']);
+});
+Route::post('/login', [UserController::class, 'login']);
