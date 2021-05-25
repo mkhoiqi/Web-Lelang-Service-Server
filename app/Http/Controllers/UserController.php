@@ -89,9 +89,8 @@ class UserController extends Controller
         return response($response, 201);
     }
     public function deleteUser(Request $request){
-        //$deleteuser = 
-        User::where('id',$request->id)->forceDelete();
-        //$deleteuser->forceDelete();
+        $deleteuser = User::find($resquest->id);
+        $deleteuser->forceDelete();
         return response('User Deleted', 200);
     }
 }
