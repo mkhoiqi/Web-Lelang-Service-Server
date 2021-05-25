@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
     Route::post('/showbidproject', [AdminController::class, 'showBidproject']);
     Route::post('/showallbid', [AdminController::class, 'showallBid']);
     Route::post('/register', [UserController::class, 'register']);
-    Route::post('/deleteuser', [UserController::class, 'deleteuser']);
+    Route::post('/deleteuser', [UserController::class, 'deleteUser']);
 });
 Route::group(['middleware' => ['auth:sanctum', 'teknisi']], function () {
     Route::post('/createBid', [ProjectController::class, 'createBid']);
